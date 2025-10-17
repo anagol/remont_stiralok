@@ -3,23 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ремонт стиральных машин на дому в Москве. Срочный выезд!</title>
-    <meta name="description"
-          content="Срочный ремонт стиральных машин в Москве с гарантией до 3 лет. Бесплатная диагностика. Мастер за 30 минут.">
+    <title>Ремонт стиральных машин на дому в Москве. Выезд за 30 минут!</title>
+    <meta name="description" content="Профессиональный ремонт стиральных машин в Москве с выездом на дом. Бесплатная диагностика, гарантия до 3 лет. Ремонтируем 99% поломок за один визит.">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+
+<!-- ================= HEADER ================= -->
 <header>
     <div class="container header-content">
-        <a href="/" class="logo">Ремонт СМА Москва</a>
+        <a href="#" class="logo">Ремонт СМА</a>
         <div class="contact-info">
             <div class="header-schedule">
                 <span class="icon-clock"></span>
                 <span>Ежедневно с 8:00 до 22:00</span>
             </div>
-            <a href="tel:+79262134302" class="btn btn-primary">
+            <a href="tel:+79262134302" class="btn btn-header">
                 <span class="icon-phone"></span>
                 <span>+7 926 213-43-02</span>
             </a>
@@ -27,121 +28,143 @@
     </div>
 </header>
 
-<section class="hero">
-    <div class="container">
-        <h1>Ремонт стиральных машин на дому в Москве</h1>
-        <p>Срочный выезд мастера за **30 минут**. **Гарантия до 3 лет**.</p>
-        <div class="form-callback">
-            <h3>**БЕСПЛАТНАЯ ДИАГНОСТИКА** при ремонте!</h3>
-            <form id="telegram-form" action="#" method="POST">
-                <label>
-                    <input type="text" name="name" placeholder="Ваше имя" required>
-                </label>
-                <label>
-                    <input type="tel" name="phone" placeholder="Ваш телефон" required>
-                </label>
-                <label>
-                    <input type="text" name="message" placeholder="Укажите симптомы неисправности" required>
-                </label>
-                <button type="submit" class="btn btn-primary">Вызвать мастера</button>
-                <small>Нажимая кнопку, вы соглашаетесь на обработку персональных данных.</small>
-            </form>
+<main>
+    <!-- ================= HERO ================= -->
+    <section class="hero" id="top">
+        <div class="container hero-container">
+            <div class="hero-text">
+                <h1>Ремонт стиральных машин в Москве с выездом на дом</h1>
+                <p class="subtitle">Мастер будет у вас уже сегодня. Бесплатная диагностика и гарантия до 3 лет!</p>
+                <a href="tel:+79262134302" class="btn btn-primary">Вызвать мастера</a>
+            </div>
+            <div class="hero-form-wrapper" id="order-form">
+                <div class="form-callback">
+                    <h3>Срочный вызов мастера</h3>
+                    <p>Оставьте заявку, и мы перезвоним вам в течение 5 минут!</p>
+                    <form id="telegram-form" method="POST">
+                        <input type="text" name="name" placeholder="Ваше имя" required>
+                        <input type="tel" name="phone" placeholder="Ваш телефон" required>
+                        <textarea name="message" placeholder="Кратко опишите проблему (например, 'не сливает воду')" required></textarea>
+                        <button type="submit" class="btn btn-primary">Отправить заявку</button>
+                        <small>Нажимая кнопку, вы соглашаетесь на обработку персональных данных.</small>
+                    </form>
+                </div>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section class="why-us">
-    <div class="container">
-        <h2>Почему нам доверяют 500+ клиентов ежемесячно</h2>
-        <div class="why-us-grid">
-            <div class="feature-item">
-                <span style="font-size: 2em;">🚀</span>
-                <h3>Срочный выезд</h3>
-                <p>Мастер будет у вас через 30-60 минут или в удобное время.</p>
-            </div>
-            <div class="feature-item">
-                <span style="font-size: 2em;">✅</span>
-                <h3>Официальная гарантия</h3>
-                <p>До 3 лет на выполненные работы и установленные запчасти.</p>
-            </div>
-            <div class="feature-item">
-                <span style="font-size: 2em;">💰</span>
-                <h3>Прозрачные цены</h3>
-                <p>Стоимость фиксируется до начала работ и не меняется.</p>
-            </div>
-            <div class="feature-item">
-                <span style="font-size: 2em;">🛠️</span>
-                <h3>Оригинальные запчасти</h3>
-                <p>Используем только проверенные и сертифицированные комплектующие.</p>
+    <!-- ================= BRANDS ================= -->
+    <section class="brands">
+        <div class="container">
+            <h2>Ремонтируем все популярные марки</h2>
+            <div class="brands-grid">
+                <div class="brand-item">Bosch</div>
+                <div class="brand-item">Samsung</div>
+                <div class="brand-item">LG</div>
+                <div class="brand-item">Indesit</div>
+                <div class="brand-item">Ariston</div>
+                <div class="brand-item">Candy</div>
+                <div class="brand-item">Beko</div>
+                <div class="brand-item">Siemens</div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section class="prices">
-    <div class="container">
-        <h2>Цены на ремонт (включая работу мастера)</h2>
-        <div class="price-list">
-            <div class="price-item">
-                <span class="price-name">Замена ТЭНа</span>
-                <span class="price-value">от 1500 руб.</span>
-            </div>
-            <div class="price-item">
-                <span class="price-name">Устранение засора</span>
-                <span class="price-value">от 900 руб.</span>
-            </div>
-            <div class="price-item">
-                <span class="price-name">Ремонт/замена насоса (помпы)</span>
-                <span class="price-value">от 1800 руб.</span>
-            </div>
-            <div class="price-item">
-                <span class="price-name">Ремонт электронного модуля</span>
-                <span class="price-value">от 2500 руб.</span>
+    <!-- ================= FEATURES ================= -->
+    <section class="features">
+        <div class="container">
+            <h2>Почему 95% клиентов рекомендуют нас</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon icon-rocket"></div>
+                    <h3>Выезд за 30 минут</h3>
+                    <p>Бесплатный выезд мастера в любую точку Москвы в течение 30-60 минут или в удобное для вас время.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon icon-shield"></div>
+                    <h3>Гарантия до 3 лет</h3>
+                    <p>Предоставляем официальную гарантию на все выполненные работы и установленные запчасти.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon icon-tools"></div>
+                    <h3>Опытные мастера</h3>
+                    <p>В нашем штате только проверенные специалисты со стажем работы от 5 лет и профильным образованием.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon icon-check"></div>
+                    <h3>Ремонт за 1 визит</h3>
+                    <p>В 90% случаев поломка устраняется за один визит, так как у мастеров с собой все необходимые запчасти.</p>
+                </div>
             </div>
         </div>
-        <div style="text-align: center; margin-top: 30px;">
-            <p style="margin-bottom: 20px;">*Цены указаны без учета стоимости запчастей.</p>
-            <a href="https://t.me/+79262134302" target="_blank" class="btn btn-primary">Написать в Telegram</a>
-        </div>
-    </div>
-</section>
+    </section>
 
-<section class="workflow">
-    <div class="container">
-        <h2>Как мы ремонтируем вашу машину за 4 шага</h2>
-        <div class="steps">
-            <div class="step">
-                <div class="step-number">1</div>
-                <h3>Звонок/Заявка</h3>
-                <p>Вы оставляете заявку, мы уточняем детали поломки.</p>
+    <!-- ================= PRICES ================= -->
+    <section class="prices">
+        <div class="container">
+            <h2>Прозрачные цены на ремонт</h2>
+            <div class="price-list">
+                <div class="price-item">
+                    <span class="price-name">Диагностика (в случае ремонта)</span>
+                    <span class="price-value">БЕСПЛАТНО</span>
+                </div>
+                <div class="price-item">
+                    <span class="price-name">Замена ТЭНа</span>
+                    <span class="price-value">от 1500 руб.</span>
+                </div>
+                <div class="price-item">
+                    <span class="price-name">Устранение засора</span>
+                    <span class="price-value">от 900 руб.</span>
+                </div>
+                <div class="price-item">
+                    <span class="price-name">Ремонт/замена насоса (помпы)</span>
+                    <span class="price-value">от 1800 руб.</span>
+                </div>
+                <div class="price-item">
+                    <span class="price-name">Ремонт электронного модуля</span>
+                    <span class="price-value">от 2500 руб.</span>
+                </div>
             </div>
-            <div class="step">
-                <div class="step-number">2</div>
-                <h3>Выезд и Диагностика</h3>
-                <p>Мастер приезжает, проводит бесплатную диагностику (при ремонте).</p>
-            </div>
-            <div class="step">
-                <div class="step-number">3</div>
-                <h3>Ремонт</h3>
-                <p>Согласовываем стоимость, мастер выполняет работу за 1-2 часа.</p>
-            </div>
-            <div class="step">
-                <div class="step-number">4</div>
-                <h3>Проверка и Гарантия</h3>
-                <p>Проверяете работу, оплачиваете, получаете гарантийный талон.</p>
+            <div class="prices-footer">
+                <p>*Точная стоимость определяется мастером после диагностики. Цены указаны без учета стоимости запчастей.</p>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
+    <!-- ================= REVIEWS ================= -->
+    <section class="reviews">
+        <div class="container">
+            <h2>Что говорят наши клиенты</h2>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-rating">★★★★★</div>
+                    <p class="review-text">"Стиралка перестала сливать воду. Мастер приехал через 40 минут, как и обещал. Быстро нашел причину, прочистил какой-то фильтр, и все заработало. Очень довольна оперативностью!"</p>
+                    <p class="review-author">Анна, м. Университет</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-rating">★★★★★</div>
+                    <p class="review-text">"Думал, придется покупать новую машинку, старая Indesit начала сильно греметь. Вызвал мастера из этой компании. Оказалось, проблема с подшипником. Заменили на месте, цена адекватная. Спасибо!"</p>
+                    <p class="review-author">Михаил, г. Химки</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-rating">★★★★★</div>
+                    <p class="review-text">"Отличный сервис. Оставила заявку на сайте, перезвонили через 3 минуты. Мастер приехал в оговоренное время, был вежлив, все объяснил. Ремонт занял около часа. Рекомендую."</p>
+                    <p class="review-author">Елена, м. Текстильщики</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
 <footer>
-    <div class="container">
-        <p>Ремонт стиральных машин на дому в Москве. &copy; 2024</p>
-        <p>
-            <a href="#">Политика конфиденциальности</a> |
-            <a href="tel:+79262134302">+7 926 213-43-02</a> |
-            E-mail: example@master.ru
-        </p>
+    <div class="container footer-content">
+        <div class="footer-logo">Ремонт-СМА &copy; 2024</div>
+        <div class="footer-contacts">
+            <a href="tel:+79262134302">+7 926 213-43-02</a>
+            <a href="#">Политика конфиденциальности</a>
+        </div>
     </div>
 </footer>
 
