@@ -1,6 +1,16 @@
 
 document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('telegram-form');
+
+    // Restrict input for the telephone field
+    const phoneInputForFiltering = document.querySelector('input[type="tel"][name="phone"]');
+    if (phoneInputForFiltering) {
+        phoneInputForFiltering.addEventListener('input', function (e) {
+            // Allow only numbers, +, -, (, ), and spaces
+            e.target.value = e.target.value.replace(/[^0-9+()\- ]/g, '');
+        });
+    }
+
     if (form) {
         form.addEventListener('submit', function (e) {
             e.preventDefault(); // Отменяем стандартную отправку формы
