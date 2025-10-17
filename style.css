@@ -80,15 +80,14 @@ header {
 }
 
 .logo {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-}
+    width: 200px;
+    height: 200px;
+    border-radius: 30%;
 
-.logo img {
-    height: 50px; /* Or any desired height */
 }
-
+.logo:hover {
+    transform: scale(1.2);
+}
 .contact-info a {
     font-size: 1.5em;
     font-weight: 900;
