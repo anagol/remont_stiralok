@@ -16,6 +16,7 @@
 body {
     line-height: 1.6;
     color: var(--text-color);
+    padding-top: 80px; /* Добавляем отступ сверху, равный высоте шапки */
 }
 
 .container {
@@ -41,13 +42,15 @@ h2 {
 }
 
 .btn {
-    display: inline-block;
+    display: inline-flex; /* Изменено для выравнивания иконок */
+    align-items: center;
+    gap: 10px;
     padding: 15px 30px;
     font-size: 1.2em;
     font-weight: 700;
     text-decoration: none;
     border-radius: 8px;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.2s;
     text-align: center;
     cursor: pointer;
     border: none;
@@ -61,22 +64,28 @@ h2 {
 
 .btn-primary:hover {
     background-color: #218838;
+    transform: translateY(-2px);
 }
 
-/* Шапка и Навигация */
+/* === Новый стиль для шапки === */
 header {
     background: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: sticky;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    position: fixed; /* Изменено на fixed для "прилипания" */
     top: 0;
+    left: 0;
+    width: 100%;
     z-index: 1000;
+    height: 80px; /* Задаем фиксированную высоту */
+    display: flex;
+    align-items: center;
 }
 
 .header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 0;
+    width: 100%;
 }
 
 .logo {
@@ -86,17 +95,43 @@ header {
     text-decoration: none;
 }
 
-.contact-info a {
-    font-size: 1.5em;
-    font-weight: 900;
-    color: var(--text-color);
-    text-decoration: none;
+.contact-info {
+    display: flex;
+    align-items: center;
+    gap: 25px;
 }
 
-.contact-info span {
-    display: block;
-    font-size: 0.8em;
-    text-align: right;
+.header-schedule {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #555;
+    font-size: 0.9em;
+}
+
+.contact-info .btn {
+    padding: 12px 20px; /* Уменьшаем кнопку в шапке */
+    font-size: 1em;
+}
+
+/* Иконки через CSS */
+.icon-phone, .icon-clock {
+    display: inline-block;
+    width: 1.2em;
+    height: 1.2em;
+    background-color: currentColor;
+    -webkit-mask-size: cover;
+    mask-size: cover;
+}
+
+.icon-phone {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.976.976 0 0 0-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.57a.999.999 0 0 0 .25-1.02c-.37-1.11-.56-2.3-.56-3.53a1 1 0 0 0-1-1H4.01a1 1 0 0 0-1 1c0 9.39 7.61 17 17 17a1 1 0 0 0 1-1v-3.62a1 1 0 0 0-1-1z'%3E%3C/path%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.976.976 0 0 0-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.57a.999.999 0 0 0 .25-1.02c-.37-1.11-.56-2.3-.56-3.53a1 1 0 0 0-1-1H4.01a1 1 0 0 0-1 1c0 9.39 7.61 17 17 17a1 1 0 0 0 1-1v-3.62a1 1 0 0 0-1-1z'%3E%3C/path%3E%3C/svg%3E");
+}
+
+.icon-clock {
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z'%3E%3C/path%3E%3Cpath d='M13 7h-2v5.414l3.293 3.293 1.414-1.414L13 11.586z'%3E%3C/path%3E%3C/svg%3E");
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='currentColor'%3E%3Cpath d='M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z'%3E%3C/path%3E%3Cpath d='M13 7h-2v5.414l3.293 3.293 1.414-1.414L13 11.586z'%3E%3C/path%3E%3C/svg%3E");
 }
 
 /* Герой Секция (Первый экран) */
@@ -246,17 +281,19 @@ footer a {
 
 /* Адаптивность */
 @media (max-width: 768px) {
+    body {
+        padding-top: 120px; /* Увеличиваем отступ для мобильных, т.к. шапка станет выше */
+    }
+
     .header-content {
         flex-direction: column;
-        text-align: center;
+        justify-content: center;
+        gap: 15px;
     }
 
     .contact-info {
-        margin-top: 10px;
-    }
-
-    .contact-info a {
-        font-size: 1.2em;
+        flex-direction: column-reverse; /* Кнопка будет сверху */
+        gap: 15px;
     }
 
     .hero {
