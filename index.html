@@ -13,10 +13,10 @@
 <body>
 <header>
     <div class="container header-content">
-        <p href="/" class="logo">Ремонт стиральных машин на дому в Москве</p>
+        <img class="logo" src="img/logo_master.png" alt="Ремонт стиральных машин на дому в Москве">
         <div class="contact-info" style="text-align: center">
             <a href="tel:+79262134302" class="btn btn-primary" style="color: #fff">+7 926 213-43-02</a>
-            <p style="color: var(--primary-color)"><b>Звоните!</b> <br> <b>Ежедневно с 8:00 до 22:00</b></p>
+            <p style="color: var(--primary-color)"><b>Звоните мастеру!</b> <br> <b>Ежедневно с 8:00 до 22:00</b></p>
         </div>
     </div>
 </header>
@@ -24,13 +24,19 @@
 <section class="hero">
     <div class="container">
         <h1>Ремонт стиральных машин на дому в Москве</h1>
-        <p>Срочный выезд мастера за **30 минут**. **Гарантия до 3 лет**.</p>
+        <p>Срочный выезд мастера за **30 минут**. **Гарантия**.</p>
         <div class="form-callback">
             <h3>**БЕСПЛАТНАЯ ДИАГНОСТИКА** при ремонте!</h3>
             <form id="telegram-form" action="#" method="POST">
-                <input type="text" name="name" placeholder="Ваше имя" required>
-                <input type="tel" name="phone" placeholder="Ваш телефон" required>
-                <input type="text" name="message" placeholder="Укажите симптомы неисправности" required>
+                <label>
+                    <input type="text" name="name" placeholder="Ваше имя" required>
+                </label>
+                <label>
+                    <input type="tel" name="phone" placeholder="Ваш телефон" required>
+                </label>
+                <label>
+                    <input type="text" name="message" placeholder="Укажите симптомы неисправности" required>
+                </label>
                 <button type="submit" class="btn btn-primary">Вызвать мастера</button>
                 <small>Нажимая кнопку, вы соглашаетесь на обработку персональных данных.</small>
             </form>
@@ -65,6 +71,24 @@
         </div>
     </div>
 </section>
+<section class="brands">
+    <div class="container">
+        <h2>Ремонтируем все популярные бренды</h2>
+        <div class="brand-logos">
+            <div class="brand-logo"><img src="img/aeg-logo.svg" alt="AEG"></div>
+            <div class="brand-logo"><img src="img/samsung-logo.svg" alt="Samsung"></div>
+            <div class="brand-logo"><img src="img/bosch-logo.svg" alt="Bosch"></div>
+            <div class="brand-logo"><img src="img/electrolux-logo.svg" alt="Electrolux"></div>
+            <div class="brand-logo"><img src="img/indesit-logo.svg" alt="Indesit"></div>
+            <div class="brand-logo"><img src="img/whirlpool-logo.svg" alt="Whirlpool"></div>
+            <div class="brand-logo"><img src="img/zanussi-logo.svg" alt="Zanussi"></div>
+            <div class="brand-logo"><img src="img/neff-logo.svg" alt="Neff"></div>
+            <div class="brand-logo"><img src="img/smeg-logo.svg" alt="Smeg"></div>
+            <div class="brand-logo"><img src="img/ariston_logo.svg" alt="Ariston"></div>
+        </div>
+    </div>
+    </section>
+
 
 <section class="prices">
     <div class="container">
@@ -126,9 +150,7 @@
     <div class="container">
         <p>Ремонт стиральных машин на дому в Москве. &copy; 2024</p>
         <p>
-            <a href="#">Политика конфиденциальности</a> |
-            <a href="tel:+79262134302">+7 926 213-43-02</a> |
-            E-mail: example@master.ru
+            <a href="tel:+79262134302">+7 926 213-43-02</a>
         </p>
     </div>
 </footer>

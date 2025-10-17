@@ -10,7 +10,7 @@
     --primary-color: #007bff; /* Синий для кнопок и акцентов */
     --secondary-color: #28a745; /* Зеленый для CTA */
     --text-color: #333;
-    --bg-light: #f8f9fa;
+    --bg-light: #befadc;
 }
 
 body {
@@ -65,7 +65,7 @@ h2 {
 
 /* Шапка и Навигация */
 header {
-    background: white;
+    background-color: #ebfbf4;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     position: sticky;
     top: 0;
@@ -80,10 +80,13 @@ header {
 }
 
 .logo {
-    font-size: 1.5em;
-    font-weight: 900;
-    color: var(--primary-color);
-    text-decoration: none;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.logo img {
+    height: 50px; /* Or any desired height */
 }
 
 .contact-info a {
@@ -147,7 +150,7 @@ section {
 }
 
 .why-us {
-    background-color: var(--bg-light);
+    background-color: #ebfbf4;
 }
 
 .why-us-grid {
@@ -171,7 +174,46 @@ section {
     margin-top: 10px;
 }
 
+/* Brands section */
+.brands {
+    padding: 60px 0;
+    background-color: #e5f1ff;
+}
+
+.brands h2 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.brand-logos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.brand-logo {
+    padding: 10px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 120px;
+}
+
+.brand-logo img {
+    max-width: 100%;
+    height: auto;
+}
+
 /* Цены */
+.prices {
+    background-color: #ebfbf4;
+ }
+
 .price-list {
     margin-top: 40px;
     max-width: 800px;
@@ -202,7 +244,7 @@ section {
 
 /* Порядок работы */
 .workflow {
-    background-color: var(--bg-light);
+    background-color: #e5f1ff;
 }
 
 .steps {
