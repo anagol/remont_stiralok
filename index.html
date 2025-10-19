@@ -17,6 +17,8 @@
     <link rel="icon" href="img/favicon.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
 
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
@@ -187,6 +189,31 @@
     </div>
 </section>
 
+<section id="calendar-section" class="container">
+    <h2>Запись на ремонт</h2>
+    <p>Выберите удобную дату и время для визита мастера.</p>
+    <div id="calendar"></div>
+    <div id="time-slots" class="hidden"></div>
+</section>
+
+<div id="modal" class="modal hidden">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h3>Заполните данные</h3>
+        <form id="modal-form">
+            <input type="hidden" id="selected-date" name="date">
+            <input type="hidden" id="selected-time" name="time">
+            <label for="brand">Марка стиральной машины:</label>
+            <input type="text" id="brand" name="brand" required>
+            <label for="name">Ваше имя:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="phone">Ваш телефон:</label>
+            <input type="tel" id="phone" name="phone" required>
+            <button type="submit" class="btn btn-primary">Отправить</button>
+        </form>
+    </div>
+</div>
+
 <footer>
     <div class="container">
         <p>Ремонт стиральных машин на дому в Москве. &copy; 2024</p>
@@ -195,7 +222,8 @@
         </p>
     </div>
 </footer>
-
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://npmcdn.com/flatpickr/dist/l10n/ru.js"></script>
 <script src="script.js" defer></script>
 </body>
 </html>

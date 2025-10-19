@@ -16,22 +16,52 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-// Получаем данные из формы и очищаем их от лишних пробелов и тегов
+// Получаем общие данные из формы
 $name = isset($_POST['name']) ? trim(strip_tags($_POST['name'])) : '';
 $phone = isset($_POST['phone']) ? trim(strip_tags($_POST['phone'])) : '';
-$userMessage = isset($_POST['message']) ? trim(strip_tags($_POST['message'])) : '';
 
-// Простая валидация: проверяем, что поля не пустые
-if (empty($name) || empty($phone) || empty($userMessage)) {
-    echo json_encode(['success' => false, 'message' => 'Пожалуйста, заполните все поля.']);
-    exit;
+// Определяем, какая форма была отправлена
+$isModalForm = isset($_POST['date']) && isset($_POST['time']);
+
+$message = '';
+
+if ($isModalForm) {
+    // Данные из формы записи (модальное окно)
+    $date = trim(strip_tags($_POST['date']));
+    $time = trim(strip_tags($_POST['time']));
+    $brand = isset($_POST['brand']) ? trim(strip_tags($_POST['brand'])) : 'Не указана';
+
+    // Валидация для формы записи
+    if (empty($name) || empty($phone) || empty($date) || empty($time)) {
+        echo json_encode(['success' => false, 'message' => 'Пожалуйста, заполните все обязательные поля.']);
+        exit;
+    }
+
+    // Составляем сообщение для Telegram
+    $message = "<b>🗓️ Новая запись на ремонт! 🗓️</b>\n\n";
+    $message .= "<b>Имя:</b> " . htmlspecialchars($name) . "\n";
+    $message .= "<b>Телефон:</b> " . htmlspecialchars($phone) . "\n";
+    $message .= "<b>Марка машины:</b> " . htmlspecialchars($brand) . "\n";
+    $message .= "<b>Желаемая дата:</b> " . htmlspecialchars($date) . "\n";
+    $message .= "<b>Желаемое время:</b> " . htmlspecialchars($time);
+
+} else {
+    // Данные из основной формы обратной связи
+    $userMessage = isset($_POST['message']) ? trim(strip_tags($_POST['message'])) : '';
+
+    // Валидация для основной формы
+    if (empty($name) || empty($phone) || empty($userMessage)) {
+        echo json_encode(['success' => false, 'message' => 'Пожалуйста, заполните все поля.']);
+        exit;
+    }
+
+    // Составляем сообщение для Telegram
+    $message = "<b>Новая заявка с сайта!</b>\n\n";
+    $message .= "<b>Имя:</b> " . htmlspecialchars($name) . "\n";
+    $message .= "<b>Телефон:</b> " . htmlspecialchars($phone) . "\n";
+    $message .= "<b>Неисправность:</b> " . htmlspecialchars($userMessage);
 }
 
-// Составляем сообщение для Telegram
-$message = "<b>Новая заявка с сайта!</b>\n\n";
-$message .= "<b>Имя:</b> " . htmlspecialchars($name) . "\n";
-$message .= "<b>Телефон:</b> " . htmlspecialchars($phone) . "\n";
-$message .= "<b>Неисправность:</b> " . htmlspecialchars($userMessage);
 
 // Формируем URL для отправки запроса к Telegram API
 $url = "https://api.telegram.org/bot{$botToken}/sendMessage";
