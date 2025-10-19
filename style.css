@@ -341,6 +341,21 @@ footer a {
     border-radius: 5px;
 }
 
+#modal-form .checkbox-container {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#modal-form .checkbox-container input[type="checkbox"] {
+    width: auto;
+    margin-right: 10px;
+}
+
+#modal-form .checkbox-container label {
+    margin-top: 0;
+}
+
 #modal-form button {
     width: 100%;
     margin-top: 20px;

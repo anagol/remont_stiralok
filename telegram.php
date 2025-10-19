@@ -5,6 +5,8 @@
 $botToken = '8320034909:AAGmmsHUX9yEQhyJNDJSXcJvWB7RxzXoiCU';
 // ID чата, куда будут приходить сообщения
 $chatId = '-4873417026';
+// Длительность ремонта в часах (для блокировки времени)
+$repairDurationHours = 2;
 // ===============================================
 
 $bookingsFile = 'bookings.json';
@@ -24,7 +26,9 @@ $phone = isset($_POST['phone']) ? trim(strip_tags($_POST['phone'])) : '';
 $date = isset($_POST['date']) ? trim(strip_tags($_POST['date'])) : '';
 $time = isset($_POST['time']) ? trim(strip_tags($_POST['time'])) : '';
 $brand = isset($_POST['brand']) ? trim(strip_tags($_POST['brand'])) : 'Не указана';
+$model = isset($_POST['model']) && !empty($_POST['model']) ? trim(strip_tags($_POST['model'])) : 'Не указана';
 $fault = isset($_POST['fault']) ? trim(strip_tags($_POST['fault'])) : 'Не указана';
+$isUrgent = isset($_POST['urgent']); // Проверяем, отмечен ли чекбокс
 
 // Валидация полей
 if (empty($name) || empty($phone) || empty($date) || empty($time) || empty($fault)) {
@@ -32,27 +36,40 @@ if (empty($name) || empty($phone) || empty($date) || empty($time) || empty($faul
     exit;
 }
 
-// --- Проверка бронирования ---
+// --- Проверка бронирования на длительность ремонта ---
 $bookings = json_decode(file_get_contents($bookingsFile), true);
 if ($bookings === null) {
     $bookings = [];
 }
 
-foreach ($bookings as $booking) {
-    if ($booking['date'] === $date && $booking['time'] === $time) {
-        echo json_encode(['success' => false, 'message' => 'К сожалению, это время уже занято. Пожалуйста, выберите другое.']);
-        exit;
+$selectedHour = (int)explode(':', $time)[0];
+
+for ($i = 0; $i < $repairDurationHours; $i++) {
+    $hourToCheck = $selectedHour + $i;
+    $timeToCheck = $hourToCheck . ':00';
+
+    foreach ($bookings as $booking) {
+        if ($booking['date'] === $date && $booking['time'] === $timeToCheck) {
+            echo json_encode(['success' => false, 'message' => 'К сожалению, это время и последующие часы уже заняты. Пожалуйста, выберите другое время.']);
+            exit;
+        }
     }
 }
 // --- Конец проверки ---
 
 
 // Составляем сообщение для Telegram
-$message = "<b>🗓️ Новая запись на ремонт! 🗓️</b>\n\n";
+$message = '';
+if ($isUrgent) {
+    $message .= "<b>‼️ СРОЧНЫЙ ВЫЗОВ ‼️</b>\n\n";
+}
+
+$message .= "<b>🗓️ Новая запись на ремонт! 🗓️</b>\n\n";
 $message .= "<b>Имя:</b> " . htmlspecialchars($name) . "\n";
-$message .= "<b>Телефон:</b> " . htmlspecialchars($phone) . "\n";
-$message .= "<b>Марка машины:</b> " . htmlspecialchars($brand) . "\n";
-$message .= "<b>Неисправность:</b> " . htmlspecialchars($fault) . "\n";
+$message .= "<b>Телефон:</b> " . htmlspecialchars($phone) . "\n\n";
+$message .= "<b>Марка:</b> " . htmlspecialchars($brand) . "\n";
+$message .= "<b>Модель:</b> " . htmlspecialchars($model) . "\n";
+$message .= "<b>Неисправность:</b> " . htmlspecialchars($fault) . "\n\n";
 $message .= "<b>Желаемая дата:</b> " . htmlspecialchars($date) . "\n";
 $message .= "<b>Желаемое время:</b> " . htmlspecialchars($time);
 
@@ -64,7 +81,7 @@ $url = "https://api.telegram.org/bot{$botToken}/sendMessage";
 $postFields = [
     'chat_id' => $chatId,
     'text' => $message,
-    'parse_mode' => 'HTML' // Включаем поддержку HTML-тегов в сообщении
+    'parse_mode' => 'HTML'
 ];
 
 // Отправляем запрос с помощью cURL
@@ -80,9 +97,17 @@ curl_close($ch);
 
 // Проверяем ответ от Telegram
 if ($httpCode == 200) {
-    // Если отправка успешна, сохраняем бронь
-    $newBooking = ['date' => $date, 'time' => $time];
-    $bookings[] = $newBooking;
+    // Если отправка успешна, сохраняем все забронированные часы
+    for ($i = 0; $i < $repairDurationHours; $i++) {
+        $hourToBook = $selectedHour + $i;
+        // Не бронируем часы за пределами рабочего дня (например, после 18:00)
+        if ($hourToBook <= 18) {
+            $timeToBook = $hourToBook . ':00';
+            $newBooking = ['date' => $date, 'time' => $timeToBook];
+            $bookings[] = $newBooking;
+        }
+    }
+    
     file_put_contents($bookingsFile, json_encode($bookings, JSON_PRETTY_PRINT));
     
     echo json_encode(['success' => true]);

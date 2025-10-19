@@ -1,77 +1,4 @@
-
 document.addEventListener('DOMContentLoaded', function () {
-    const form = document.getElementById('telegram-form');
-
-    // Restrict input for the telephone field
-    const phoneInputForFiltering = document.querySelector('input[type="tel"][name="phone"]');
-    if (phoneInputForFiltering) {
-        phoneInputForFiltering.addEventListener('input', function (e) {
-            // Allow only numbers, +, -, (, ), and spaces
-            e.target.value = e.target.value.replace(/[^0-9+()\- ]/g, '');
-        });
-    }
-
-    if (form) {
-        form.addEventListener('submit', function (e) {
-            e.preventDefault(); // Отменяем стандартную отправку формы
-
-            const nameInput = form.querySelector('input[name="name"]');
-            const phoneInput = form.querySelector('input[name="phone"]');
-            const messageInput = form.querySelector('input[name="message"]'); // Исправлено
-            const submitButton = form.querySelector('button[type="submit"]');
-            const originalButtonText = submitButton.textContent;
-
-            // Простое сообщение о статусе
-            const statusMessage = document.createElement('small');
-            statusMessage.style.display = 'block';
-            statusMessage.style.marginTop = '10px';
-            if (form.querySelector('small')) {
-                 form.querySelector('small').insertAdjacentElement('afterend', statusMessage);
-            } else {
-                form.appendChild(statusMessage);
-            }
-            
-
-            const formData = new FormData(form);
-            
-            submitButton.disabled = true;
-            submitButton.textContent = 'Отправка...';
-            statusMessage.textContent = '';
-
-            fetch('telegram.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    statusMessage.textContent = 'Спасибо! Ваша заявка отправлена.';
-                    statusMessage.style.color = 'green';
-                    nameInput.value = ''; // Очищаем поля
-                    phoneInput.value = '';
-                    if (messageInput) messageInput.value = ''; // Исправлено
-                } else {
-                    // Показываем детальную ошибку от сервера
-                    statusMessage.textContent = 'Ошибка: ' + (data.message || 'Неизвестная проблема. Попробуйте еще раз.');
-                    statusMessage.style.color = 'red';
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                statusMessage.textContent = 'Сетевая ошибка. Пожалуйста, проверьте подключение.';
-                statusMessage.style.color = 'red';
-            })
-            .finally(() => {
-                submitButton.disabled = false;
-                submitButton.textContent = originalButtonText;
-                 // Убираем сообщение через 5 секунд
-                setTimeout(() => {
-                    statusMessage.textContent = '';
-                }, 5000);
-            });
-        });
-    }
-
     // New code for calendar and modal
     const calendarEl = document.getElementById('calendar');
     const timeSlotsEl = document.getElementById('time-slots');
@@ -80,7 +7,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const modalForm = document.getElementById('modal-form');
     const selectedDateInput = document.getElementById('selected-date');
     const selectedTimeInput = document.getElementById('selected-time');
-    let currentBookings = [];
 
     function fetchBookingsAndGenerateSlots(dateStr) {
         // Add a cache-busting parameter to the URL to get the latest bookings
@@ -92,7 +18,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 return response.json();
             })
             .then(bookings => {
-                currentBookings = bookings;
                 generateTimeSlots(dateStr, bookings);
                 timeSlotsEl.classList.remove('hidden');
             })
@@ -110,6 +35,13 @@ document.addEventListener('DOMContentLoaded', function () {
         flatpickr(calendarEl, {
             inline: true,
             minDate: "today",
+            // Disable Sundays
+            disable: [
+                function(date) {
+                    // return true to disable
+                    return (date.getDay() === 0);
+                }
+            ],
             onChange: function(selectedDates, dateStr, instance) {
                 if (selectedDates[0]) {
                     selectedDateInput.value = dateStr;
@@ -123,7 +55,8 @@ document.addEventListener('DOMContentLoaded', function () {
         timeSlotsEl.innerHTML = '';
         const bookedSlotsForDate = bookings.filter(b => b.date === dateStr).map(b => b.time);
 
-        for (let i = 9; i <= 18; i++) {
+        // Show slots up to 17:00 because a 2-hour repair is assumed
+        for (let i = 9; i <= 17; i++) {
             const time = `${i}:00`;
             const timeSlot = document.createElement('div');
             timeSlot.classList.add('time-slot');
@@ -185,10 +118,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     statusMessage.style.color = 'green';
                     modalForm.reset();
                     
-                    // Add the new booking to the local list and regenerate slots
-                    const newBooking = { date: selectedDateInput.value, time: selectedTimeInput.value };
-                    currentBookings.push(newBooking);
-                    generateTimeSlots(selectedDateInput.value, currentBookings);
+                    // Immediately update the UI to show the new booking
+                    fetchBookingsAndGenerateSlots(selectedDateInput.value);
 
                     setTimeout(() => {
                          modal.classList.add('hidden');

@@ -180,14 +180,20 @@
         <form id="modal-form">
             <input type="hidden" id="selected-date" name="date">
             <input type="hidden" id="selected-time" name="time">
-            <label for="brand">Марка стиральной машины:</label>
-            <input type="text" id="brand" name="brand" required>
-            <label for="fault">Неисправность:</label>
-            <input type="text" id="fault" name="fault" required>
             <label for="name">Ваше имя:</label>
             <input type="text" id="name" name="name" required>
             <label for="phone">Ваш телефон:</label>
             <input type="tel" id="phone" name="phone" required>
+            <label for="brand">Марка стиральной машины:</label>
+            <input type="text" id="brand" name="brand" required>
+            <label for="model">Модель (необязательно):</label>
+            <input type="text" id="model" name="model">
+            <label for="fault">Неисправность:</label>
+            <input type="text" id="fault" name="fault" required>
+            <div class="checkbox-container">
+                <input type="checkbox" id="urgent" name="urgent">
+                <label for="urgent">Срочный вызов</label>
+            </div>
             <button type="submit" class="btn btn-primary">Отправить</button>
         </form>
     </div>
