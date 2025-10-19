@@ -101,48 +101,6 @@ header {
     text-align: right;
 }
 
-/* Герой Секция (Первый экран) */
-.hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('img/hero-bg.jpg') no-repeat center center/cover;
-    color: white;
-    padding: 100px 0;
-    text-align: center;
-}
-
-.hero h1 {
-    font-size: 3em;
-    margin-bottom: 10px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.hero p {
-    font-size: 1.5em;
-    margin-bottom: 30px;
-    font-weight: 400;
-}
-
-.form-callback {
-    background: rgba(255, 255, 255, 0.9);
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 400px;
-    margin: 30px auto 0;
-    color: var(--text-color);
-}
-
-.form-callback input {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1em;
-}
-
-.form-callback button {
-    width: 100%;
-}
-
 /* Секции контента */
 section {
     padding: 60px 0;
@@ -289,6 +247,9 @@ footer a {
 #calendar-section {
     padding: 60px 0;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #calendar {
@@ -316,6 +277,19 @@ footer a {
     background-color: var(--primary-color);
     color: white;
 }
+
+.time-slot.disabled {
+    background-color: #f0f0f0;
+    color: #aaa;
+    cursor: not-allowed;
+    border-color: #ddd;
+}
+
+.time-slot.disabled:hover {
+    background-color: #f0f0f0;
+    color: #aaa;
+}
+
 
 /* Modal */
 .modal {
@@ -391,18 +365,6 @@ footer a {
     }
 
     .contact-info a {
-        font-size: 1.2em;
-    }
-
-    .hero {
-        padding: 60px 0;
-    }
-
-    .hero h1 {
-        font-size: 2em;
-    }
-
-    .hero p {
         font-size: 1.2em;
     }
 
