@@ -17,37 +17,22 @@
     <link rel="icon" href="img/favicon.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-
 
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
-        (function (m, e, t, r, i, k, a) {
-            m[i] = m[i] || function () {
-                (m[i].a = m[i].a || []).push(arguments)
-            };
-            m[i].l = 1 * new Date();
-            for (var j = 0; j < document.scripts.length; j++) {
-                if (document.scripts[j].src === r) {
-                    return;
-                }
-            }
-            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
-        })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js?id=104697608', 'ym');
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104697608', 'ym');
 
-        ym(104697608, 'init', {
-            ssr: true,
-            webvisor: true,
-            clickmap: true,
-            ecommerce: "dataLayer",
-            accurateTrackBounce: true,
-            trackLinks: true
-        });
+        ym(104697608, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
     </script>
-    <noscript>
-        <div><img src="https://mc.yandex.ru/watch/104697608" style="position:absolute; left:-9999px;" alt=""/></div>
-    </noscript>
+    <noscript><div><img src="https://mc.yandex.ru/watch/104697608" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
     <!-- /Yandex.Metrika counter -->
+
+
 
 </head>
 
@@ -64,11 +49,27 @@
     </div>
 </header>
 
-<section id="calendar-section" class="container">
-    <h2>Запись на ремонт</h2>
-    <p>Выберите удобную дату и время для визита мастера.</p>
-    <div id="calendar"></div>
-    <div id="time-slots" class="hidden"></div>
+<section class="hero">
+    <div class="container">
+        <h1>Ремонт стиральных машин на дому в Москве</h1>
+        <p>Срочный выезд мастера. Гарантия.</p>
+        <div class="form-callback">
+            <h3>**БЕСПЛАТНАЯ ДИАГНОСТИКА** <br> *при ремонте*</h3>
+            <form id="telegram-form" action="#" method="POST">
+                <label>
+                    <input type="text" name="name" placeholder="Ваше имя" required>
+                </label>
+                <label>
+                    <input type="tel" name="phone" placeholder="Ваш телефон" required>
+                </label>
+                <label>
+                    <input type="text" name="message" placeholder="Укажите симптомы неисправности" required>
+                </label>
+                <button type="submit" class="btn btn-primary">Вызвать мастера</button>
+                <small>Нажимая кнопку, вы соглашаетесь на обработку персональных данных.</small>
+            </form>
+        </div>
+    </div>
 </section>
 
 <section class="why-us">
@@ -123,11 +124,11 @@
         <div class="price-list">
             <div class="price-item">
                 <span class="price-name">Замена ТЭНа</span>
-                <span class="price-value">от 1500 руб.</span>
+                <span class="price-value">от 800 руб.</span>
             </div>
             <div class="price-item">
                 <span class="price-name">Устранение засора</span>
-                <span class="price-value">от 900 руб.</span>
+                <span class="price-value">от 800 руб.</span>
             </div>
             <div class="price-item">
                 <span class="price-name">Ремонт/замена насоса (помпы)</span>
@@ -172,32 +173,6 @@
     </div>
 </section>
 
-<div id="modal" class="modal hidden">
-    <div class="modal-content">
-        <span class="close-button">&times;</span>
-        <h3>Заполните данные</h3>
-        <form id="modal-form">
-            <input type="hidden" id="selected-date" name="date">
-            <input type="hidden" id="selected-time" name="time">
-            <label for="name">Ваше имя:</label>
-            <input type="text" id="name" name="name" required>
-            <label for="phone">Ваш телефон:</label>
-            <input type="tel" id="phone" name="phone" required>
-            <label for="brand">Марка стиральной машины:</label>
-            <input type="text" id="brand" name="brand" required>
-            <label for="model">Модель (необязательно):</label>
-            <input type="text" id="model" name="model">
-            <label for="fault">Неисправность:</label>
-            <input type="text" id="fault" name="fault" required>
-            <div class="checkbox-container">
-                <input type="checkbox" id="urgent" name="urgent">
-                <label for="urgent">Срочный вызов</label>
-            </div>
-            <button type="submit" class="btn btn-primary">Отправить</button>
-        </form>
-    </div>
-</div>
-
 <footer>
     <div class="container">
         <p>Хваль Сергей Михайлович</p>
@@ -211,8 +186,7 @@
         <p>&copy; 2025</p>
     </div>
 </footer>
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<script src="https://npmcdn.com/flatpickr/dist/l10n/ru.js"></script>
+
 <script src="script.js" defer></script>
 </body>
 </html>
